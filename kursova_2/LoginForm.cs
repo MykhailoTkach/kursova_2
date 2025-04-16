@@ -10,11 +10,49 @@ using System.Windows.Forms;
 
 namespace kursova_2
 {
-    public partial class Form1 : Form
+    public partial class LoginForm : Form
     {
-        public Form1()
+        public LoginForm()
         {
             InitializeComponent();
+        }
+
+        private void panel1_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label3_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label4_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void checkBoxPass_CheckedChanged(object sender, EventArgs e)
+        {
+            if (checkBoxPass.Checked == false)
+            {
+                txtPass.UseSystemPasswordChar = false;
+            }
+            else
+            {
+                txtPass.UseSystemPasswordChar = true;
+            }
+        }
+
+        private void lblClear_Click(object sender, EventArgs e)
+        {
+            txtName.Clear();
+            txtPass.Clear();
         }
     }
 }
