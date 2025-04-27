@@ -39,6 +39,11 @@ namespace kursova_2
         {
             try
             {
+                if (txtPass.Text != txtRepass.Text)
+                {
+                    MessageBox.Show("Password does not match!", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
                 if (MessageBox.Show("Are you sure you want to save this user?", "Saving Record",MessageBoxButtons.YesNo,MessageBoxIcon.Question)== DialogResult.Yes)
                 {
                     cm = new SqlCommand("INSERT INTO tbUser(username, fullname, password, phone) VALUES (@username, @fullname, @password, @phone)", con);
@@ -49,7 +54,8 @@ namespace kursova_2
                     con.Open();
                     cm.ExecuteNonQuery();
                     con.Close();
-                    MessageBox.Show("Дані успішно збережено!");
+                    MessageBox.Show("User has been successfully saved!");
+                    Clear();
                 }
             }
             catch (Exception ex)
@@ -61,6 +67,8 @@ namespace kursova_2
         private void btnClear_Click(object sender, EventArgs e)
         {
             Clear();
+            btnSave.Enabled = true;
+            btnUpdate.Enabled = false;
         }
 
         public void Clear()
@@ -68,7 +76,41 @@ namespace kursova_2
             txtUserName.Clear();
             txtFullName.Clear();
             txtPass.Clear();
+            txtRepass.Clear();
             txtPhone.Clear();
+        }
+
+        private void btnUpdate_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (txtPass.Text != txtRepass.Text)
+                {
+                    MessageBox.Show("Password does not match!", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+                if (MessageBox.Show("Are you sure you want to update this user?", "Update Record", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                {
+                    cm = new SqlCommand("Update tbUser SET  fullname=@fullname, password=@password, phone=@phone Where username LIKE'"+ txtUserName.Text + "' ", con);
+                    cm.Parameters.AddWithValue("@fullname", txtFullName.Text);
+                    cm.Parameters.AddWithValue("@password", txtPass.Text);
+                    cm.Parameters.AddWithValue("@phone", txtPhone.Text);
+                    con.Open();
+                    cm.ExecuteNonQuery();
+                    con.Close();
+                    MessageBox.Show("User has been successfully updated!");
+                    this.Dispose(); 
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void UserModuleForm_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }
