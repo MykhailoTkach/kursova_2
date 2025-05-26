@@ -53,13 +53,13 @@ namespace kursova_2
             }
             else if (colName == "Delete")
             {
-                if (MessageBox.Show("Are you sure you want to delete this customer?", "Deleting Record", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                if (MessageBox.Show("Ви впевнені, що хочете видалити цього клієнта?", "Видалення запису", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                 {
                     con.Open();
                     cm = new SqlCommand("DELETE FROM tbCustomer WHERE cid LIKE'" + dgvCustomer.Rows[e.RowIndex].Cells[1].Value.ToString() + "'", con);
                     cm.ExecuteNonQuery();
                     con.Close();
-                    MessageBox.Show("Record Deleted Successfully!");
+                    MessageBox.Show("Запис успішно видалено!");
                 }
             }
             LoadCustomer();

@@ -30,6 +30,7 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CustomerModuleForm));
             this.panel1 = new System.Windows.Forms.Panel();
+            this.pictureBoxClose = new System.Windows.Forms.PictureBox();
             this.label1 = new System.Windows.Forms.Label();
             this.btnUpdate = new System.Windows.Forms.Button();
             this.btnClear = new System.Windows.Forms.Button();
@@ -39,7 +40,6 @@
             this.txtCName = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.lblCId = new System.Windows.Forms.Label();
-            this.pictureBoxClose = new System.Windows.Forms.PictureBox();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxClose)).BeginInit();
             this.SuspendLayout();
@@ -56,6 +56,18 @@
             this.panel1.Size = new System.Drawing.Size(557, 90);
             this.panel1.TabIndex = 14;
             // 
+            // pictureBoxClose
+            // 
+            this.pictureBoxClose.Image = ((System.Drawing.Image)(resources.GetObject("pictureBoxClose.Image")));
+            this.pictureBoxClose.Location = new System.Drawing.Point(520, 0);
+            this.pictureBoxClose.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.pictureBoxClose.Name = "pictureBoxClose";
+            this.pictureBoxClose.Size = new System.Drawing.Size(37, 38);
+            this.pictureBoxClose.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBoxClose.TabIndex = 12;
+            this.pictureBoxClose.TabStop = false;
+            this.pictureBoxClose.Click += new System.EventHandler(this.pictureBoxClose_Click);
+            // 
             // label1
             // 
             this.label1.AutoSize = true;
@@ -63,9 +75,9 @@
             this.label1.ForeColor = System.Drawing.Color.White;
             this.label1.Location = new System.Drawing.Point(25, 28);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(184, 23);
+            this.label1.Size = new System.Drawing.Size(178, 23);
             this.label1.TabIndex = 1;
-            this.label1.Text = "Customer Module";
+            this.label1.Text = "Модуль Покупця";
             this.label1.Click += new System.EventHandler(this.label1_Click);
             // 
             // btnUpdate
@@ -80,7 +92,7 @@
             this.btnUpdate.Name = "btnUpdate";
             this.btnUpdate.Size = new System.Drawing.Size(92, 46);
             this.btnUpdate.TabIndex = 25;
-            this.btnUpdate.Text = "Update";
+            this.btnUpdate.Text = "Оновити";
             this.btnUpdate.UseVisualStyleBackColor = false;
             this.btnUpdate.Click += new System.EventHandler(this.btnUpdate_Click);
             // 
@@ -96,7 +108,7 @@
             this.btnClear.Name = "btnClear";
             this.btnClear.Size = new System.Drawing.Size(92, 46);
             this.btnClear.TabIndex = 24;
-            this.btnClear.Text = "Clear";
+            this.btnClear.Text = "Очистити";
             this.btnClear.UseVisualStyleBackColor = false;
             this.btnClear.Click += new System.EventHandler(this.btnClear_Click);
             // 
@@ -112,7 +124,7 @@
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(92, 46);
             this.btnSave.TabIndex = 23;
-            this.btnSave.Text = "Save";
+            this.btnSave.Text = "Зберегти";
             this.btnSave.UseVisualStyleBackColor = false;
             this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
@@ -127,11 +139,11 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(90, 229);
+            this.label5.Location = new System.Drawing.Point(-4, 231);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(60, 20);
+            this.label5.Size = new System.Drawing.Size(150, 20);
             this.label5.TabIndex = 21;
-            this.label5.Text = "Phone:";
+            this.label5.Text = "Номер Телефону :";
             // 
             // txtCName
             // 
@@ -145,34 +157,22 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(89, 171);
+            this.label2.Location = new System.Drawing.Point(101, 171);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(61, 20);
+            this.label2.Size = new System.Drawing.Size(45, 20);
             this.label2.TabIndex = 15;
-            this.label2.Text = "Name :";
+            this.label2.Text = "Ім\'я :";
             // 
             // lblCId
             // 
             this.lblCId.AutoSize = true;
             this.lblCId.Location = new System.Drawing.Point(44, 302);
             this.lblCId.Name = "lblCId";
-            this.lblCId.Size = new System.Drawing.Size(96, 20);
+            this.lblCId.Size = new System.Drawing.Size(90, 20);
             this.lblCId.TabIndex = 26;
-            this.lblCId.Text = "customer Id";
+            this.lblCId.Text = "Id Покупця";
             this.lblCId.Visible = false;
             this.lblCId.Click += new System.EventHandler(this.lblCId_Click);
-            // 
-            // pictureBoxClose
-            // 
-            this.pictureBoxClose.Image = ((System.Drawing.Image)(resources.GetObject("pictureBoxClose.Image")));
-            this.pictureBoxClose.Location = new System.Drawing.Point(520, 0);
-            this.pictureBoxClose.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.pictureBoxClose.Name = "pictureBoxClose";
-            this.pictureBoxClose.Size = new System.Drawing.Size(37, 38);
-            this.pictureBoxClose.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBoxClose.TabIndex = 12;
-            this.pictureBoxClose.TabStop = false;
-            this.pictureBoxClose.Click += new System.EventHandler(this.pictureBoxClose_Click);
             // 
             // CustomerModuleForm
             // 

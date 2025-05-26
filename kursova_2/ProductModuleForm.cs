@@ -58,7 +58,7 @@ namespace kursova_2
         {
             try
             {
-                if (MessageBox.Show("Are you sure you want to save this product?", "Saving Record", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                if (MessageBox.Show("Ви впевнені, що хочете зберегти цей товар?", "Збереження запису", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                 {
                     cm = new SqlCommand("INSERT INTO tbProduct(pname, pqty, pprice, pdescription, pcategory) VALUES (@pname, @pqty, @pprice, @pdescription, @pcategory)", con);
                     cm.Parameters.AddWithValue("@pname", txtPName.Text);
@@ -69,7 +69,7 @@ namespace kursova_2
                     con.Open();
                     cm.ExecuteNonQuery();
                     con.Close();
-                    MessageBox.Show("Product has been successfully saved!");
+                    MessageBox.Show("Товар успішно збережено!");
                     Clear();
                 }
             }
@@ -98,7 +98,7 @@ namespace kursova_2
         {
             try
             {
-                if (MessageBox.Show("Are you sure you want to update this user?", "Update Record", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                if (MessageBox.Show("Ви впевнені, що хочете оновити цей товар?", "Оновлення запису", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                 {
                     cm = new SqlCommand("Update tbProduct SET  pname=@pname, pqty=@pqty, pprice=@pprice, pdescription=@pdescription, pcategory=@pcategory  Where pid LIKE'" + lblPid.Text + "' ", con);
                     cm.Parameters.AddWithValue("@pname", txtPName.Text);
@@ -109,7 +109,7 @@ namespace kursova_2
                     con.Open();
                     cm.ExecuteNonQuery();
                     con.Close();
-                    MessageBox.Show("Product has been successfully updated!");
+                    MessageBox.Show("Товар успішно оновлено!");
                     this.Dispose();
                 }
             }

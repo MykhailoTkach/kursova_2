@@ -58,13 +58,13 @@ namespace kursova_2
             }
             else if (colName == "Delete")
             {
-                if (MessageBox.Show("Are you sure you want to delete this category?", "Delete Record", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                if (MessageBox.Show("Ви впевнені, що хочете видалити цю категорію?", "Видалення запису", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                 {
                     con.Open();
                     cm = new SqlCommand("DELETE FROM tbCategory WHERE catid LIKE'" + dgvCategory.Rows[e.RowIndex].Cells[1].Value.ToString() + "'", con);
                     cm.ExecuteNonQuery();
                     con.Close();
-                    MessageBox.Show("Record Deleted Successfully!");
+                    MessageBox.Show("Категорію успішно видалено!");
                 }
             }
             LoadCategory();
@@ -77,6 +77,11 @@ namespace kursova_2
             formModule.btnUpdate.Enabled = false;
             formModule.ShowDialog();
             LoadCategory();
+        }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

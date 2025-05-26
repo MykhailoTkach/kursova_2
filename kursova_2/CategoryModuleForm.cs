@@ -34,14 +34,14 @@ namespace kursova_2
         {
             try
             {
-                if (MessageBox.Show("Are you sure you want to save this category?", "Saving Record", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                if (MessageBox.Show("Ви впевнені, що хочете зберегти цю категорію?", "Збереження запису", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                 {
                     cm = new SqlCommand("INSERT INTO tbCategory(catname) VALUES (@catname)", con);
                     cm.Parameters.AddWithValue("@catname", txtCatName.Text);
                     con.Open();
                     cm.ExecuteNonQuery();
                     con.Close();
-                    MessageBox.Show("Category has been successfully saved!");
+                    MessageBox.Show("Категорію успішно збережено!");
                     Clear();
                 }
             }
@@ -76,14 +76,14 @@ namespace kursova_2
         {
             try
             {
-                if (MessageBox.Show("Are you sure you want to update this Category?", "Update Record", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                if (MessageBox.Show("Ви впевнені, що хочете оновити цю категорію?", "Оновлення запису", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                 {
                     cm = new SqlCommand("Update tbCategory SET catname=@catname Where catid LIKE'" + lblCatId.Text + "' ", con);
                     cm.Parameters.AddWithValue("@catname", txtCatName.Text);
                     con.Open();
                     cm.ExecuteNonQuery();
                     con.Close();
-                    MessageBox.Show("Category has been successfully updated!");
+                    MessageBox.Show("Категорію успішно оновлено!");
                     this.Dispose();
                 }
             }
@@ -91,6 +91,11 @@ namespace kursova_2
             {
                 MessageBox.Show(ex.Message);
             }
+        }
+
+        private void panel1_Paint(object sender, PaintEventArgs e)
+        {
+
         }
     }
 }

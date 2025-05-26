@@ -100,7 +100,7 @@ namespace kursova_2
             GetQty();
             if (Convert.ToInt16(UDQty.Value) > qty)
             {
-                MessageBox.Show("Instock quantity is not enough!", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("На складі недостатньо товару!", "Попередження", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 UDQty.Value = UDQty.Value - 1;
                 return;
             }
@@ -141,15 +141,15 @@ namespace kursova_2
             {
                 if (txtCId.Text == "")
                 {
-                    MessageBox.Show("Please select customer!", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    MessageBox.Show("Будь ласка, виберіть клієнта!", "Попередження", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return;
                 }
                 if (txtPid.Text == "")
                 {
-                    MessageBox.Show("Please select product!", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    MessageBox.Show("Будь ласка, виберіть товар!", "Попередження", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return;
                 }
-                if (MessageBox.Show("Are you sure you want to insert this order?", "Saving Record", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                if (MessageBox.Show("Ви впевнені, що хочете додати це замовлення?", "Збереження запису", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                 {
                     cm = new SqlCommand("INSERT INTO tbOrder(odate, pid, cid, qty, price, total) VALUES (@odate, @pid, @cid, @qty, @price, @total)", con);
                     cm.Parameters.AddWithValue("@odate", dtOrder.Value);
@@ -161,7 +161,7 @@ namespace kursova_2
                     con.Open();
                     cm.ExecuteNonQuery();
                     con.Close();
-                    MessageBox.Show("Order has been successfully inserted!");
+                    MessageBox.Show("Замовлення успішно додано!");
 
                     cm = new SqlCommand("Update tbProduct SET pqty=(pqty-@pqty)  Where pid LIKE'" + txtPid.Text + "' ", con);
                     cm.Parameters.AddWithValue("@pqty", Convert.ToInt16(UDQty.Text));
@@ -208,6 +208,16 @@ namespace kursova_2
             }
             dr.Close();
             con.Close();
+        }
+
+        private void dgvProduct_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+        private void label4_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

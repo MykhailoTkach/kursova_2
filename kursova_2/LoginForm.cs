@@ -13,7 +13,7 @@ namespace kursova_2
 {
     public partial class LoginForm : Form
     {
-        SqlConnection con = new SqlConnection(@"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=dblMS;Integrated Security=True");
+        SqlConnection con = new SqlConnection(@"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=dbLMS;Integrated Security=True");
         SqlCommand cm = new SqlCommand();
         SqlDataReader dr;
         public LoginForm()
@@ -45,11 +45,11 @@ namespace kursova_2
         {
             if (checkBoxPass.Checked == false)
             {
-                txtPass.UseSystemPasswordChar = false;
+                txtPass.UseSystemPasswordChar = true;
             }
             else
             {
-                txtPass.UseSystemPasswordChar = true;
+                txtPass.UseSystemPasswordChar = false;
             }
         }
 
@@ -61,7 +61,7 @@ namespace kursova_2
 
         private void pictureBoxClose_Click(object sender, EventArgs e)
         {
-            if (MessageBox.Show("Exit Application","Confirm", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+            if (MessageBox.Show("Вийти з програми?", "Підтвердження", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
             {
                 Application.Exit();
             }
@@ -84,14 +84,14 @@ namespace kursova_2
                 dr.Read();
                 if (dr.HasRows)
                 {
-                    MessageBox.Show("Welcome " + dr["fullname"].ToString() + " | ", "Access Granted", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show("Ласкаво просимо, " + dr["fullname"].ToString() + " | ", "Доступ дозволено", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     MainForm main = new MainForm();
                     this.Hide();
                     main.ShowDialog();
                 }
                 else 
                 { 
-                 MessageBox.Show("Invalid username or password!", "Access Denied", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                 MessageBox.Show("Невірне ім’я користувача або пароль!", "Доступ заборонено", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
                 con.Close();
             }

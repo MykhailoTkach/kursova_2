@@ -46,13 +46,13 @@ namespace kursova_2
             }
             else if (colName == "Delete")
             {
-                if (MessageBox.Show("Are you sure you want to delete this product?", "Deleting Record", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                if (MessageBox.Show("Ви впевнені, що хочете видалити цей товар?", "Видалення запису", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                 {
                     con.Open();
                     cm = new SqlCommand("DELETE FROM tbProduct WHERE pid LIKE'" + dgvProduct.Rows[e.RowIndex].Cells[1].Value.ToString() + "'", con);
                     cm.ExecuteNonQuery();
                     con.Close();
-                    MessageBox.Show("Product Deleted Successfully!");
+                    MessageBox.Show("Товар успішно видалено!");
                 }
             }
             LoadProduct();

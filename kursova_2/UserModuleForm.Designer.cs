@@ -80,18 +80,18 @@
             this.label1.ForeColor = System.Drawing.Color.White;
             this.label1.Location = new System.Drawing.Point(25, 28);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(131, 23);
+            this.label1.Size = new System.Drawing.Size(227, 23);
             this.label1.TabIndex = 1;
-            this.label1.Text = "User Module";
+            this.label1.Text = "Модуль Користувача";
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(58, 122);
+            this.label2.Location = new System.Drawing.Point(9, 121);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(97, 20);
+            this.label2.Size = new System.Drawing.Size(145, 20);
             this.label2.TabIndex = 1;
-            this.label2.Text = "User Name :";
+            this.label2.Text = "Ім\'я Користувача :";
             // 
             // txtUserName
             // 
@@ -112,11 +112,11 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(67, 183);
+            this.label3.Location = new System.Drawing.Point(64, 183);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(87, 20);
             this.label3.TabIndex = 3;
-            this.label3.Text = "Full Name :";
+            this.label3.Text = "Прізвище :";
             // 
             // txtPass
             // 
@@ -131,11 +131,11 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(68, 246);
+            this.label4.Location = new System.Drawing.Point(79, 252);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(87, 20);
+            this.label4.Size = new System.Drawing.Size(72, 20);
             this.label4.TabIndex = 5;
-            this.label4.Text = "Password :";
+            this.label4.Text = "Пароль :";
             this.label4.Click += new System.EventHandler(this.label4_Click);
             // 
             // txtPhone
@@ -149,11 +149,11 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(95, 353);
+            this.label5.Location = new System.Drawing.Point(4, 353);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(60, 20);
+            this.label5.Size = new System.Drawing.Size(150, 20);
             this.label5.TabIndex = 7;
-            this.label5.Text = "Phone:";
+            this.label5.Text = "Номер Телефону :";
             // 
             // btnSave
             // 
@@ -167,7 +167,7 @@
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(92, 46);
             this.btnSave.TabIndex = 9;
-            this.btnSave.Text = "Save";
+            this.btnSave.Text = "Зберегти";
             this.btnSave.UseVisualStyleBackColor = false;
             this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
@@ -183,7 +183,7 @@
             this.btnClear.Name = "btnClear";
             this.btnClear.Size = new System.Drawing.Size(92, 46);
             this.btnClear.TabIndex = 10;
-            this.btnClear.Text = "Clear";
+            this.btnClear.Text = "Очистити";
             this.btnClear.UseVisualStyleBackColor = false;
             this.btnClear.Click += new System.EventHandler(this.btnClear_Click);
             // 
@@ -199,7 +199,7 @@
             this.btnUpdate.Name = "btnUpdate";
             this.btnUpdate.Size = new System.Drawing.Size(92, 46);
             this.btnUpdate.TabIndex = 11;
-            this.btnUpdate.Text = "Update";
+            this.btnUpdate.Text = "Оновити";
             this.btnUpdate.UseVisualStyleBackColor = false;
             this.btnUpdate.Click += new System.EventHandler(this.btnUpdate_Click);
             // 
@@ -215,11 +215,11 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(11, 303);
+            this.label6.Location = new System.Drawing.Point(3, 306);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(148, 20);
             this.label6.TabIndex = 12;
-            this.label6.Text = "Re-type Password :";
+            this.label6.Text = "Пароль Повторно :";
             // 
             // UserModuleForm
             // 

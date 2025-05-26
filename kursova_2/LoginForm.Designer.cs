@@ -80,9 +80,9 @@
             this.label3.Location = new System.Drawing.Point(105, 39);
             this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(252, 19);
+            this.label3.Size = new System.Drawing.Size(282, 19);
             this.label3.TabIndex = 7;
-            this.label3.Text = "Inventory Managment System";
+            this.label3.Text = "Система Управління  Запасами";
             this.label3.Click += new System.EventHandler(this.label3_Click);
             // 
             // pictureBox2
@@ -109,9 +109,9 @@
             this.label1.Location = new System.Drawing.Point(55, 298);
             this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(108, 21);
+            this.label1.Size = new System.Drawing.Size(117, 21);
             this.label1.TabIndex = 2;
-            this.label1.Text = "User name :";
+            this.label1.Text = "Ім\'я Юзера :";
             this.label1.Click += new System.EventHandler(this.label1_Click);
             // 
             // label2
@@ -120,9 +120,9 @@
             this.label2.Location = new System.Drawing.Point(55, 392);
             this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(98, 21);
+            this.label2.Size = new System.Drawing.Size(84, 21);
             this.label2.TabIndex = 3;
-            this.label2.Text = "Password :";
+            this.label2.Text = "Пароль :";
             // 
             // txtPass
             // 
@@ -143,7 +143,7 @@
             this.btnLogin.Name = "btnLogin";
             this.btnLogin.Size = new System.Drawing.Size(334, 43);
             this.btnLogin.TabIndex = 5;
-            this.btnLogin.Text = "Login";
+            this.btnLogin.Text = "Увійти";
             this.btnLogin.UseVisualStyleBackColor = false;
             this.btnLogin.Click += new System.EventHandler(this.btnLogin_Click);
             // 
@@ -152,12 +152,12 @@
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Century Gothic", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.label4.ForeColor = System.Drawing.Color.Red;
-            this.label4.Location = new System.Drawing.Point(152, 225);
+            this.label4.Location = new System.Drawing.Point(139, 228);
             this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(146, 19);
+            this.label4.Size = new System.Drawing.Size(186, 19);
             this.label4.TabIndex = 7;
-            this.label4.Text = "Please Login First";
+            this.label4.Text = "Будь ласка,  увійдіть";
             this.label4.Click += new System.EventHandler(this.label4_Click);
             // 
             // checkBoxPass
@@ -165,9 +165,9 @@
             this.checkBoxPass.AutoSize = true;
             this.checkBoxPass.Location = new System.Drawing.Point(235, 548);
             this.checkBoxPass.Name = "checkBoxPass";
-            this.checkBoxPass.Size = new System.Drawing.Size(158, 25);
+            this.checkBoxPass.Size = new System.Drawing.Size(181, 25);
             this.checkBoxPass.TabIndex = 8;
-            this.checkBoxPass.Text = "Show Password";
+            this.checkBoxPass.Text = "Показати Пароль";
             this.checkBoxPass.UseVisualStyleBackColor = true;
             this.checkBoxPass.CheckedChanged += new System.EventHandler(this.checkBoxPass_CheckedChanged);
             // 
@@ -178,9 +178,9 @@
             this.lblClear.Location = new System.Drawing.Point(55, 548);
             this.lblClear.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblClear.Name = "lblClear";
-            this.lblClear.Size = new System.Drawing.Size(55, 21);
+            this.lblClear.Size = new System.Drawing.Size(88, 21);
             this.lblClear.TabIndex = 9;
-            this.lblClear.Text = "Clear";
+            this.lblClear.Text = "Очистити";
             this.lblClear.Click += new System.EventHandler(this.lblClear_Click);
             // 
             // pictureBox1

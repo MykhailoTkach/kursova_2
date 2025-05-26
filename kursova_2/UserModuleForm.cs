@@ -41,10 +41,10 @@ namespace kursova_2
             {
                 if (txtPass.Text != txtRepass.Text)
                 {
-                    MessageBox.Show("Password does not match!", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    MessageBox.Show("Паролі не співпадають!", "Попередження", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return;
                 }
-                if (MessageBox.Show("Are you sure you want to save this user?", "Saving Record",MessageBoxButtons.YesNo,MessageBoxIcon.Question)== DialogResult.Yes)
+                if (MessageBox.Show("Ви дійсно хочете зберегти цього користувача?", "Збереження запису", MessageBoxButtons.YesNo,MessageBoxIcon.Question)== DialogResult.Yes)
                 {
                     cm = new SqlCommand("INSERT INTO tbUser(username, fullname, password, phone) VALUES (@username, @fullname, @password, @phone)", con);
                     cm.Parameters.AddWithValue("@username", txtUserName.Text);
@@ -54,7 +54,7 @@ namespace kursova_2
                     con.Open();
                     cm.ExecuteNonQuery();
                     con.Close();
-                    MessageBox.Show("User has been successfully saved!");
+                    MessageBox.Show("Користувач успішно збережений!");
                     Clear();
                 }
             }
@@ -86,10 +86,10 @@ namespace kursova_2
             {
                 if (txtPass.Text != txtRepass.Text)
                 {
-                    MessageBox.Show("Password does not match!", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    MessageBox.Show("Паролі не співпадають!", "Попередження", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return;
                 }
-                if (MessageBox.Show("Are you sure you want to update this user?", "Update Record", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                if (MessageBox.Show("Ви дійсно хочете оновити дані користувача?", "Оновлення запису", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                 {
                     cm = new SqlCommand("Update tbUser SET  fullname=@fullname, password=@password, phone=@phone Where username LIKE'"+ txtUserName.Text + "' ", con);
                     cm.Parameters.AddWithValue("@fullname", txtFullName.Text);
@@ -98,7 +98,7 @@ namespace kursova_2
                     con.Open();
                     cm.ExecuteNonQuery();
                     con.Close();
-                    MessageBox.Show("User has been successfully updated!");
+                    MessageBox.Show("Користувача успішно оновлено!");
                     this.Dispose(); 
                 }
             }

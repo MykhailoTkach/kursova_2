@@ -8,6 +8,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using iTextSharp.text;
+using iTextSharp.text.pdf;
+using System.IO;
 
 namespace kursova_2
 {
@@ -42,32 +45,95 @@ namespace kursova_2
             lblQty.Text = i.ToString();
             lblTotal.Text = total.ToString();
         }
-
-        private void dgvUser_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        private void dgvOrder_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
             string colName = dgvOrder.Columns[e.ColumnIndex].Name;
 
-             if (colName == "Delete")
+            if (colName == "Delete")
             {
-                if (MessageBox.Show("Are you sure you want to delete this record?", "Deleting Record", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                if (MessageBox.Show("Ви впевнені, що хочете видалити цей запис?", "Видалення запису", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                 {
                     con.Open();
                     cm = new SqlCommand("DELETE FROM tbOrder WHERE orderid LIKE'" + dgvOrder.Rows[e.RowIndex].Cells[1].Value.ToString() + "'", con);
                     cm.ExecuteNonQuery();
                     con.Close();
-                    MessageBox.Show("Record Deleted Successfully!");
+                    MessageBox.Show("Запис успішно видалено!", "Інформація", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-                    cm = new SqlCommand("Update tbProduct SET pqty=(pqty+@pqty)  Where pid LIKE'" + dgvOrder.Rows[e.RowIndex].Cells[3].Value.ToString() + "' ", con);
+                    cm = new SqlCommand("UPDATE tbProduct SET pqty=(pqty+@pqty) WHERE pid LIKE'" + dgvOrder.Rows[e.RowIndex].Cells[3].Value.ToString() + "'", con);
                     cm.Parameters.AddWithValue("@pqty", Convert.ToInt16(dgvOrder.Rows[e.RowIndex].Cells[5].Value.ToString()));
 
                     con.Open();
                     cm.ExecuteNonQuery();
                     con.Close();
-
                 }
             }
+            else if (colName == "Download")
+            {
+                string orderId = dgvOrder.Rows[e.RowIndex].Cells[1].Value.ToString();
+                string orderDate = dgvOrder.Rows[e.RowIndex].Cells[2].Value.ToString();
+                string productId = dgvOrder.Rows[e.RowIndex].Cells[3].Value.ToString();
+                string productName = dgvOrder.Rows[e.RowIndex].Cells[4].Value.ToString();
+                string customerId = dgvOrder.Rows[e.RowIndex].Cells[5].Value.ToString();
+                string customerName = dgvOrder.Rows[e.RowIndex].Cells[6].Value.ToString();
+                string qty = dgvOrder.Rows[e.RowIndex].Cells[7].Value.ToString();
+                string price = dgvOrder.Rows[e.RowIndex].Cells[8].Value.ToString();
+                string total = dgvOrder.Rows[e.RowIndex].Cells[9].Value.ToString();
+
+                SaveFileDialog sfd = new SaveFileDialog();
+                sfd.Filter = "PDF Files (*.pdf)|*.pdf";
+                sfd.FileName = $"Фактура_{orderId}.pdf";
+
+                if (sfd.ShowDialog() == DialogResult.OK)
+                {
+                    Document doc = new Document(PageSize.A4);
+                    PdfWriter.GetInstance(doc, new FileStream(sfd.FileName, FileMode.Create));
+                    doc.Open();
+
+                    string fontPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Fonts), "arial.ttf");
+                    BaseFont baseFont = BaseFont.CreateFont(fontPath, BaseFont.IDENTITY_H, BaseFont.EMBEDDED);
+                    iTextSharp.text.Font font = new iTextSharp.text.Font(baseFont, 12);
+                    iTextSharp.text.Font titleFont = new iTextSharp.text.Font(baseFont, 18, iTextSharp.text.Font.BOLD);
+
+                    Paragraph title = new Paragraph("ФАКТУРА", titleFont);
+                    title.Alignment = Element.ALIGN_CENTER;
+                    doc.Add(title);
+                    doc.Add(new Paragraph("\n", font));
+
+                    PdfPTable table = new PdfPTable(2);
+                    table.WidthPercentage = 100;
+
+                    table.AddCell(new PdfPCell(new Phrase("Номер замовлення:", font)));
+                    table.AddCell(new PdfPCell(new Phrase(orderId, font)));
+                    table.AddCell(new PdfPCell(new Phrase("Дата:", font)));
+                    table.AddCell(new PdfPCell(new Phrase(orderDate, font)));
+                    table.AddCell(new PdfPCell(new Phrase("Клієнт:", font)));
+                    table.AddCell(new PdfPCell(new Phrase($"{customerName} (ID: {customerId})", font)));
+                    table.AddCell(new PdfPCell(new Phrase("Товар:", font)));
+                    table.AddCell(new PdfPCell(new Phrase($"{productName} (ID: {productId})", font)));
+                    table.AddCell(new PdfPCell(new Phrase("Кількість:", font)));
+                    table.AddCell(new PdfPCell(new Phrase(qty, font)));
+                    table.AddCell(new PdfPCell(new Phrase("Ціна за одиницю:", font)));
+                    table.AddCell(new PdfPCell(new Phrase($"{price} грн", font)));
+                    table.AddCell(new PdfPCell(new Phrase("Загальна сума:", font)));
+                    table.AddCell(new PdfPCell(new Phrase($"{total} грн", font)));
+
+                    doc.Add(table);
+                    doc.Add(new Paragraph("\nПідпис менеджера: ________________________", font));
+
+                    doc.Close();
+
+                    MessageBox.Show("Фактура збережена у форматі PDF!", "Успіх", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                    System.Diagnostics.Process.Start(sfd.FileName);
+                }
+            }
+
             LoadOrder();
         }
+
+
+
+
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
@@ -75,6 +141,7 @@ namespace kursova_2
             moduleForm.ShowDialog();
             LoadOrder();
         }
+
 
         private void txtSearch_TextChanged(object sender, EventArgs e)
         {

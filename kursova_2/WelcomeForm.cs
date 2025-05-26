@@ -32,5 +32,10 @@ namespace InventoryManagementSystem
                 login.ShowDialog();
             }
         }
+
+        private void WelcomeForm_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

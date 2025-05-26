@@ -30,6 +30,7 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CategoryModuleForm));
             this.panel1 = new System.Windows.Forms.Panel();
+            this.pictureBoxClose = new System.Windows.Forms.PictureBox();
             this.label1 = new System.Windows.Forms.Label();
             this.lblCatId = new System.Windows.Forms.Label();
             this.btnUpdate = new System.Windows.Forms.Button();
@@ -37,7 +38,6 @@
             this.btnSave = new System.Windows.Forms.Button();
             this.txtCatName = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
-            this.pictureBoxClose = new System.Windows.Forms.PictureBox();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxClose)).BeginInit();
             this.SuspendLayout();
@@ -53,6 +53,19 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(557, 90);
             this.panel1.TabIndex = 27;
+            this.panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint);
+            // 
+            // pictureBoxClose
+            // 
+            this.pictureBoxClose.Image = ((System.Drawing.Image)(resources.GetObject("pictureBoxClose.Image")));
+            this.pictureBoxClose.Location = new System.Drawing.Point(520, 0);
+            this.pictureBoxClose.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.pictureBoxClose.Name = "pictureBoxClose";
+            this.pictureBoxClose.Size = new System.Drawing.Size(37, 38);
+            this.pictureBoxClose.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBoxClose.TabIndex = 12;
+            this.pictureBoxClose.TabStop = false;
+            this.pictureBoxClose.Click += new System.EventHandler(this.pictureBoxClose_Click);
             // 
             // label1
             // 
@@ -61,18 +74,18 @@
             this.label1.ForeColor = System.Drawing.Color.White;
             this.label1.Location = new System.Drawing.Point(25, 28);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(182, 23);
+            this.label1.Size = new System.Drawing.Size(193, 23);
             this.label1.TabIndex = 1;
-            this.label1.Text = "Category Module";
+            this.label1.Text = "Модуль Категорій";
             // 
             // lblCatId
             // 
             this.lblCatId.AutoSize = true;
             this.lblCatId.Location = new System.Drawing.Point(65, 224);
             this.lblCatId.Name = "lblCatId";
-            this.lblCatId.Size = new System.Drawing.Size(96, 20);
+            this.lblCatId.Size = new System.Drawing.Size(94, 20);
             this.lblCatId.TabIndex = 35;
-            this.lblCatId.Text = "category Id";
+            this.lblCatId.Text = "Id Категорії";
             this.lblCatId.Visible = false;
             this.lblCatId.Click += new System.EventHandler(this.lblCatId_Click);
             // 
@@ -88,7 +101,7 @@
             this.btnUpdate.Name = "btnUpdate";
             this.btnUpdate.Size = new System.Drawing.Size(92, 46);
             this.btnUpdate.TabIndex = 34;
-            this.btnUpdate.Text = "Update";
+            this.btnUpdate.Text = "Оновити";
             this.btnUpdate.UseVisualStyleBackColor = false;
             this.btnUpdate.Click += new System.EventHandler(this.btnUpdate_Click);
             // 
@@ -104,7 +117,7 @@
             this.btnClear.Name = "btnClear";
             this.btnClear.Size = new System.Drawing.Size(92, 46);
             this.btnClear.TabIndex = 33;
-            this.btnClear.Text = "Clear";
+            this.btnClear.Text = "Очистити";
             this.btnClear.UseVisualStyleBackColor = false;
             this.btnClear.Click += new System.EventHandler(this.btnClear_Click);
             // 
@@ -120,7 +133,7 @@
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(92, 46);
             this.btnSave.TabIndex = 32;
-            this.btnSave.Text = "Save";
+            this.btnSave.Text = "Зберегти";
             this.btnSave.UseVisualStyleBackColor = false;
             this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
@@ -138,21 +151,9 @@
             this.label2.AutoSize = true;
             this.label2.Location = new System.Drawing.Point(26, 160);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(135, 20);
+            this.label2.Size = new System.Drawing.Size(115, 20);
             this.label2.TabIndex = 28;
-            this.label2.Text = "Category Name :";
-            // 
-            // pictureBoxClose
-            // 
-            this.pictureBoxClose.Image = ((System.Drawing.Image)(resources.GetObject("pictureBoxClose.Image")));
-            this.pictureBoxClose.Location = new System.Drawing.Point(520, 0);
-            this.pictureBoxClose.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.pictureBoxClose.Name = "pictureBoxClose";
-            this.pictureBoxClose.Size = new System.Drawing.Size(37, 38);
-            this.pictureBoxClose.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBoxClose.TabIndex = 12;
-            this.pictureBoxClose.TabStop = false;
-            this.pictureBoxClose.Click += new System.EventHandler(this.pictureBoxClose_Click);
+            this.label2.Text = "Ім\'я Категорії :";
             // 
             // CategoryModuleForm
             // 

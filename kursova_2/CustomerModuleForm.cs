@@ -28,16 +28,15 @@ namespace kursova_2
         {
             try
             {
-                if (MessageBox.Show("Are you sure you want to save this customer?", "Saving Record", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                if (MessageBox.Show("Ви впевнені, що хочете зберегти цього клієнта?", "Збереження запису", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                 {
                     con.Open();
                     cm = new SqlCommand("INSERT INTO tbCustomer(cname, cphone) VALUES (@cname, @cphone)", con);
                     cm.Parameters.AddWithValue("@cname", txtCName.Text);
                     cm.Parameters.AddWithValue("@cphone", txtCPhone.Text);
-                    con.Open();
                     cm.ExecuteNonQuery(); 
                     con.Close();
-                    MessageBox.Show("Customer has been successfully saved!");
+                    MessageBox.Show("Клієнта успішно збережено!");
                     Clear();
                 }
             }
@@ -77,7 +76,7 @@ namespace kursova_2
         {
             try
             {
-                if (MessageBox.Show("Are you sure you want to update this Customer?", "Update Record", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                if (MessageBox.Show("Ви впевнені, що хочете оновити дані клієнта?", "Оновлення запису", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                 {
                     cm = new SqlCommand("Update tbCustomer SET cname=@cname, cphone=@cphone Where cid LIKE'" + lblCId.Text + "' ", con);
                     cm.Parameters.AddWithValue("@cname", txtCName.Text);
@@ -85,7 +84,7 @@ namespace kursova_2
                     con.Open();
                     cm.ExecuteNonQuery();
                     con.Close();
-                    MessageBox.Show("Customer has been successfully updated!");
+                    MessageBox.Show("Дані клієнта успішно оновлено!");
                     this.Dispose();
                 }
             }
