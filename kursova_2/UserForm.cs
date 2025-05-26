@@ -34,7 +34,7 @@ namespace kursova_2
             while (dr.Read())
             {
                 i++;
-                dgvUser.Rows.Add(i,dr[0].ToString(), dr[1].ToString(), dr[2].ToString(), dr[3].ToString());
+                dgvUser.Rows.Add(i,dr[0].ToString(), dr[1].ToString(), dr[2].ToString(), dr[3].ToString(), dr[4].ToString());
             }
             dr.Close();
             con.Close();
@@ -51,6 +51,8 @@ namespace kursova_2
                 userModule.txtFullName.Text = dgvUser.Rows[e.RowIndex].Cells[2].Value.ToString();
                 userModule.txtPass.Text = dgvUser.Rows[e.RowIndex].Cells[3].Value.ToString();
                 userModule.txtPhone.Text = dgvUser.Rows[e.RowIndex].Cells[4].Value.ToString();
+                userModule.cbRole.SelectedItem = dgvUser.Rows[e.RowIndex].Cells[5].Value.ToString();
+
 
                 userModule.btnSave.Enabled = false;
                 userModule.btnUpdate.Enabled = true;

@@ -48,11 +48,13 @@ namespace kursova_2
                 {
                     string hashedPassword = PasswordHelper.HashPassword(txtPass.Text);
 
-                    cm = new SqlCommand("INSERT INTO tbUser(username, fullname, password, phone) VALUES (@username, @fullname, @password, @phone)", con);
+                    cm = new SqlCommand("INSERT INTO tbUser(username, fullname, password, phone, role) VALUES (@username, @fullname, @password, @phone, @role)", con);
                     cm.Parameters.AddWithValue("@username", txtUserName.Text);
                     cm.Parameters.AddWithValue("@fullname", txtFullName.Text);
                     cm.Parameters.AddWithValue("@password", hashedPassword);
                     cm.Parameters.AddWithValue("@phone", txtPhone.Text);
+                    cm.Parameters.AddWithValue("@role", cbRole.SelectedItem.ToString());
+
                     con.Open();
                     cm.ExecuteNonQuery();
                     con.Close();
@@ -95,10 +97,11 @@ namespace kursova_2
                 {
                     string hashedPassword = PasswordHelper.HashPassword(txtPass.Text);
 
-                    cm = new SqlCommand("UPDATE tbUser SET fullname=@fullname, password=@password, phone=@phone WHERE username=@username", con);
+                    cm = new SqlCommand("UPDATE tbUser SET fullname=@fullname, password=@password, phone=@phone, role=@role WHERE username=@username", con);
                     cm.Parameters.AddWithValue("@fullname", txtFullName.Text);
                     cm.Parameters.AddWithValue("@password", hashedPassword);
                     cm.Parameters.AddWithValue("@phone", txtPhone.Text);
+                    cm.Parameters.AddWithValue("@role", cbRole.SelectedItem.ToString());
                     cm.Parameters.AddWithValue("@username", txtUserName.Text);
                     con.Open();
                     cm.ExecuteNonQuery();
@@ -115,10 +118,23 @@ namespace kursova_2
 
         private void UserModuleForm_Load(object sender, EventArgs e)
         {
-
+            cbRole.Items.Clear();
+            cbRole.Items.Add("Адміністратор");
+            cbRole.Items.Add("Користувач");
+            cbRole.SelectedIndex = 1;
         }
 
         private void label2_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtPhone_TextChanged(object sender, EventArgs e)
         {
 
         }

@@ -12,21 +12,44 @@ namespace kursova_2
 {
     public partial class MainForm : Form
     {
+        private string currentUser;
+        private string currentUsername;
+        private string currentRole;
+
+        public MainForm(string fullName, string username, string role)
+        {
+            InitializeComponent();
+
+            currentUser = fullName;
+            currentUsername = username;
+            currentRole = role;
+
+            lblWelcome.Text = $"Вітаю, {currentUser} ({currentRole})";
+
+            ConfigureUIByRole(currentRole);
+        }
+
         public MainForm()
         {
             InitializeComponent();
         }
 
-        private void panel1_Paint(object sender, PaintEventArgs e)
+        private void ConfigureUIByRole(string role)
         {
-
+            if (role == "Користувач")
+            {
+                btnUser.Visible = false;
+                btnCategory.Visible = false;
+            }
+            else if (role == "Адміністратор")
+            {
+                btnUser.Visible = true;
+                btnCategory.Visible = true;
+            }
         }
 
-        private void panelMain_Paint(object sender, PaintEventArgs e)
-        {
+        private Form activeForm = null;
 
-        }
-        private Form activeForm= null;
         private void openChildForm(Form childForm)
         {
             if (activeForm != null)
@@ -39,6 +62,10 @@ namespace kursova_2
             panelMain.Tag = childForm;
             childForm.BringToFront();
             childForm.Show();
+        }
+
+        private void MainForm_Load(object sender, EventArgs e)
+        {
         }
 
         private void btnUser_Click(object sender, EventArgs e)
@@ -56,17 +83,27 @@ namespace kursova_2
             openChildForm(new CategoryForm());
         }
 
-        private void label6_Click(object sender, EventArgs e)
+        private void btnOrder_Click(object sender, EventArgs e)
+        {
+            openChildForm(new OrderForm());
+        }
+
+        private void btnProduct_Click(object sender, EventArgs e)
+        {
+            openChildForm(new ProductForm());
+        }
+
+        private void panel1_Paint(object sender, PaintEventArgs e)
         {
 
         }
 
-        private void label5_Click(object sender, EventArgs e)
+        private void panelMain_Paint(object sender, PaintEventArgs e)
         {
 
         }
 
-        private void label4_Click(object sender, EventArgs e)
+        private void flowLayoutPanel1_Paint(object sender, PaintEventArgs e)
         {
 
         }
@@ -86,19 +123,19 @@ namespace kursova_2
 
         }
 
-        private void flowLayoutPanel1_Paint(object sender, PaintEventArgs e)
+        private void label4_Click(object sender, EventArgs e)
         {
 
         }
 
-        private void btnOrder_Click(object sender, EventArgs e)
+        private void label5_Click(object sender, EventArgs e)
         {
-            openChildForm(new OrderForm());
+
         }
 
-        private void btnProduct_Click(object sender, EventArgs e)
+        private void label6_Click(object sender, EventArgs e)
         {
-            openChildForm(new ProductForm());
+
         }
     }
 }

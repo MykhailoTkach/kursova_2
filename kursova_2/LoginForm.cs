@@ -64,7 +64,7 @@ namespace kursova_2
             try
             {
                 con.Open();
-                cm = new SqlCommand("SELECT fullname, password FROM tbUser WHERE username = @username", con);
+                cm = new SqlCommand("SELECT fullname, password, role FROM tbUser WHERE username = @username", con);
                 cm.Parameters.AddWithValue("@username", txtName.Text);
                 dr = cm.ExecuteReader();
 
@@ -72,15 +72,17 @@ namespace kursova_2
                 {
                     string storedHash = dr["password"].ToString();
                     string fullName = dr["fullname"].ToString();
+                    string role = dr["role"].ToString();
 
                     bool isPasswordValid = PasswordHelper.VerifyPassword(txtPass.Text, storedHash);
 
                     if (isPasswordValid)
                     {
-                        MessageBox.Show("Ласкаво просимо, " + fullName + "!", "Доступ дозволено", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        MessageBox.Show($"Ласкаво просимо, {fullName}! Ваша роль: {role}", "Доступ дозволено", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         this.Hide();
-                        MainForm main = new MainForm();
+                        MainForm main = new MainForm(fullName, txtName.Text, role);  // передаємо роль і ім'я
                         main.ShowDialog();
+                        this.Close(); // після закриття MainForm закриваємо LoginForm
                     }
                     else
                     {
@@ -101,7 +103,6 @@ namespace kursova_2
                 con.Close();
             }
         }
-
         private void txtPass_TextChanged(object sender, EventArgs e)
         {
 

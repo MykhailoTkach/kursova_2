@@ -45,6 +45,8 @@
             this.btnUpdate = new System.Windows.Forms.Button();
             this.txtRepass = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
+            this.cbRole = new System.Windows.Forms.ComboBox();
+            this.label7 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxClose)).BeginInit();
             this.SuspendLayout();
@@ -104,7 +106,7 @@
             // 
             // txtFullName
             // 
-            this.txtFullName.Location = new System.Drawing.Point(157, 183);
+            this.txtFullName.Location = new System.Drawing.Point(157, 156);
             this.txtFullName.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.txtFullName.Name = "txtFullName";
             this.txtFullName.Size = new System.Drawing.Size(347, 26);
@@ -113,7 +115,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(109, 186);
+            this.label3.Location = new System.Drawing.Point(106, 162);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(45, 20);
             this.label3.TabIndex = 3;
@@ -121,7 +123,7 @@
             // 
             // txtPass
             // 
-            this.txtPass.Location = new System.Drawing.Point(157, 246);
+            this.txtPass.Location = new System.Drawing.Point(157, 205);
             this.txtPass.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.txtPass.Name = "txtPass";
             this.txtPass.Size = new System.Drawing.Size(347, 26);
@@ -132,7 +134,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(82, 252);
+            this.label4.Location = new System.Drawing.Point(82, 196);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(72, 20);
             this.label4.TabIndex = 5;
@@ -141,16 +143,17 @@
             // 
             // txtPhone
             // 
-            this.txtPhone.Location = new System.Drawing.Point(157, 350);
+            this.txtPhone.Location = new System.Drawing.Point(157, 300);
             this.txtPhone.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.txtPhone.Name = "txtPhone";
             this.txtPhone.Size = new System.Drawing.Size(347, 26);
             this.txtPhone.TabIndex = 8;
+            this.txtPhone.TextChanged += new System.EventHandler(this.txtPhone_TextChanged);
             // 
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(4, 353);
+            this.label5.Location = new System.Drawing.Point(1, 306);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(150, 20);
             this.label5.TabIndex = 7;
@@ -206,7 +209,7 @@
             // 
             // txtRepass
             // 
-            this.txtRepass.Location = new System.Drawing.Point(157, 300);
+            this.txtRepass.Location = new System.Drawing.Point(157, 248);
             this.txtRepass.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.txtRepass.Name = "txtRepass";
             this.txtRepass.Size = new System.Drawing.Size(347, 26);
@@ -216,17 +219,37 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(6, 306);
+            this.label6.Location = new System.Drawing.Point(6, 254);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(148, 20);
             this.label6.TabIndex = 12;
             this.label6.Text = "Пароль Повторно :";
+            // 
+            // cbRole
+            // 
+            this.cbRole.FormattingEnabled = true;
+            this.cbRole.Location = new System.Drawing.Point(157, 348);
+            this.cbRole.Name = "cbRole";
+            this.cbRole.Size = new System.Drawing.Size(347, 28);
+            this.cbRole.TabIndex = 14;
+            this.cbRole.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(100, 351);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(51, 20);
+            this.label7.TabIndex = 15;
+            this.label7.Text = "Роль :";
             // 
             // UserModuleForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(600, 484);
+            this.Controls.Add(this.label7);
+            this.Controls.Add(this.cbRole);
             this.Controls.Add(this.txtRepass);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.btnUpdate);
@@ -274,5 +297,7 @@
         public System.Windows.Forms.TextBox txtPhone;
         public System.Windows.Forms.TextBox txtRepass;
         private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Label label7;
+        public System.Windows.Forms.ComboBox cbRole;
     }
 }
