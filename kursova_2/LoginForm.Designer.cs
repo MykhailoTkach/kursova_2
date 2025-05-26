@@ -132,6 +132,7 @@
             this.txtPass.Size = new System.Drawing.Size(334, 28);
             this.txtPass.TabIndex = 4;
             this.txtPass.UseSystemPasswordChar = true;
+            this.txtPass.TextChanged += new System.EventHandler(this.txtPass_TextChanged);
             // 
             // btnLogin
             // 
@@ -197,6 +198,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 21F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(444, 656);
             this.Controls.Add(this.lblClear);
             this.Controls.Add(this.checkBoxPass);

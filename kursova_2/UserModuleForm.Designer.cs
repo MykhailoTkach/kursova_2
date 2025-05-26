@@ -87,11 +87,12 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(9, 121);
+            this.label2.Location = new System.Drawing.Point(9, 124);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(145, 20);
             this.label2.TabIndex = 1;
             this.label2.Text = "Ім\'я Користувача :";
+            this.label2.Click += new System.EventHandler(this.label2_Click);
             // 
             // txtUserName
             // 
@@ -112,11 +113,11 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(64, 183);
+            this.label3.Location = new System.Drawing.Point(109, 186);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(87, 20);
+            this.label3.Size = new System.Drawing.Size(45, 20);
             this.label3.TabIndex = 3;
-            this.label3.Text = "Прізвище :";
+            this.label3.Text = " ПІБ :";
             // 
             // txtPass
             // 
@@ -131,7 +132,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(79, 252);
+            this.label4.Location = new System.Drawing.Point(82, 252);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(72, 20);
             this.label4.TabIndex = 5;
@@ -215,7 +216,7 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(3, 306);
+            this.label6.Location = new System.Drawing.Point(6, 306);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(148, 20);
             this.label6.TabIndex = 12;

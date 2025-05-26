@@ -44,12 +44,14 @@ namespace kursova_2
                     MessageBox.Show("Паролі не співпадають!", "Попередження", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return;
                 }
-                if (MessageBox.Show("Ви дійсно хочете зберегти цього користувача?", "Збереження запису", MessageBoxButtons.YesNo,MessageBoxIcon.Question)== DialogResult.Yes)
+                if (MessageBox.Show("Ви дійсно хочете зберегти цього користувача?", "Збереження запису", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                 {
+                    string hashedPassword = PasswordHelper.HashPassword(txtPass.Text);
+
                     cm = new SqlCommand("INSERT INTO tbUser(username, fullname, password, phone) VALUES (@username, @fullname, @password, @phone)", con);
                     cm.Parameters.AddWithValue("@username", txtUserName.Text);
                     cm.Parameters.AddWithValue("@fullname", txtFullName.Text);
-                    cm.Parameters.AddWithValue("@password", txtPass.Text);
+                    cm.Parameters.AddWithValue("@password", hashedPassword);
                     cm.Parameters.AddWithValue("@phone", txtPhone.Text);
                     con.Open();
                     cm.ExecuteNonQuery();
@@ -91,15 +93,18 @@ namespace kursova_2
                 }
                 if (MessageBox.Show("Ви дійсно хочете оновити дані користувача?", "Оновлення запису", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                 {
-                    cm = new SqlCommand("Update tbUser SET  fullname=@fullname, password=@password, phone=@phone Where username LIKE'"+ txtUserName.Text + "' ", con);
+                    string hashedPassword = PasswordHelper.HashPassword(txtPass.Text);
+
+                    cm = new SqlCommand("UPDATE tbUser SET fullname=@fullname, password=@password, phone=@phone WHERE username=@username", con);
                     cm.Parameters.AddWithValue("@fullname", txtFullName.Text);
-                    cm.Parameters.AddWithValue("@password", txtPass.Text);
+                    cm.Parameters.AddWithValue("@password", hashedPassword);
                     cm.Parameters.AddWithValue("@phone", txtPhone.Text);
+                    cm.Parameters.AddWithValue("@username", txtUserName.Text);
                     con.Open();
                     cm.ExecuteNonQuery();
                     con.Close();
                     MessageBox.Show("Користувача успішно оновлено!");
-                    this.Dispose(); 
+                    this.Dispose();
                 }
             }
             catch (Exception ex)
@@ -109,6 +114,11 @@ namespace kursova_2
         }
 
         private void UserModuleForm_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label2_Click(object sender, EventArgs e)
         {
 
         }

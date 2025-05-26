@@ -106,6 +106,7 @@
     <Compile Include="OrderModuleForm.Designer.cs">
       <DependentUpon>OrderModuleForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="PasswordHelper.cs" />
     <Compile Include="ProductForm.cs">
       <SubType>Form</SubType>
     </Compile>

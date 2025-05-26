@@ -24,20 +24,41 @@ namespace kursova_2
             InitializeComponent();
             LoadOrder();
         }
-        
+
         public void LoadOrder()
         {
             double total = 0;
             int i = 0;
             dgvOrder.Rows.Clear();
-            cm = new SqlCommand("SELECT orderid, odate, O.pid, P.pname, O.cid, C.cname, qty, price, total  FROM tbOrder AS O JOIN tbCustomer AS C ON O.cid=C.cid JOIN tbProduct AS P ON O.pid=P.pid WHERE CONCAT ( orderid, odate, O.pid, P.pname, O.cid, C.cname, qty, price) LIKE '%"+txtSearch.Text+"%'", con);
+
+            string query = @"SELECT orderid, odate, O.pid, P.pname, O.cid, C.cname, qty, price, total  
+                     FROM tbOrder AS O 
+                     JOIN tbCustomer AS C ON O.cid = C.cid 
+                     JOIN tbProduct AS P ON O.pid = P.pid 
+                     WHERE CONCAT(orderid, odate, O.pid, P.pname, O.cid, C.cname, qty, price) 
+                     LIKE N'%' + @search + '%'";
+
+            cm = new SqlCommand(query, con);
+            cm.Parameters.AddWithValue("@search", txtSearch.Text);
+
             con.Open();
             dr = cm.ExecuteReader();
             while (dr.Read())
             {
                 i++;
-                dgvOrder.Rows.Add(i, dr[0].ToString(),Convert.ToDateTime(dr[1].ToString()).ToString("dd/MM/yyyy"), dr[2].ToString(), dr[3].ToString(), dr[4].ToString(), dr[5].ToString(), dr[6].ToString(), dr[7].ToString(), dr[8].ToString());
-                total += Convert.ToInt32(dr[8].ToString());
+                dgvOrder.Rows.Add(
+                    i,
+                    dr[0].ToString(),
+                    Convert.ToDateTime(dr[1].ToString()).ToString("dd/MM/yyyy"),
+                    dr[2].ToString(),
+                    dr[3].ToString(),
+                    dr[4].ToString(),
+                    dr[5].ToString(),
+                    dr[6].ToString(),
+                    dr[7].ToString(),
+                    dr[8].ToString()
+                );
+                total += Convert.ToDouble(dr[8].ToString());
             }
             dr.Close();
             con.Close();
@@ -45,6 +66,7 @@ namespace kursova_2
             lblQty.Text = i.ToString();
             lblTotal.Text = total.ToString();
         }
+
         private void dgvOrder_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
             string colName = dgvOrder.Columns[e.ColumnIndex].Name;

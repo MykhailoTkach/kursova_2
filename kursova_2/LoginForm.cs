@@ -1,12 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Data.SqlClient;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace kursova_2
@@ -16,6 +9,7 @@ namespace kursova_2
         SqlConnection con = new SqlConnection(@"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=dbLMS;Integrated Security=True");
         SqlCommand cm = new SqlCommand();
         SqlDataReader dr;
+
         public LoginForm()
         {
             InitializeComponent();
@@ -43,14 +37,7 @@ namespace kursova_2
 
         private void checkBoxPass_CheckedChanged(object sender, EventArgs e)
         {
-            if (checkBoxPass.Checked == false)
-            {
-                txtPass.UseSystemPasswordChar = true;
-            }
-            else
-            {
-                txtPass.UseSystemPasswordChar = false;
-            }
+            txtPass.UseSystemPasswordChar = !checkBoxPass.Checked;
         }
 
         private void lblClear_Click(object sender, EventArgs e)
@@ -76,30 +63,48 @@ namespace kursova_2
         {
             try
             {
-                cm = new SqlCommand("SELECT * FROM tbUser WHERE username=@username AND password=@password", con);
-                cm.Parameters.AddWithValue("@username", txtName.Text);
-                cm.Parameters.AddWithValue("@password", txtPass.Text);
                 con.Open();
+                cm = new SqlCommand("SELECT fullname, password FROM tbUser WHERE username = @username", con);
+                cm.Parameters.AddWithValue("@username", txtName.Text);
                 dr = cm.ExecuteReader();
-                dr.Read();
-                if (dr.HasRows)
+
+                if (dr.Read())
                 {
-                    MessageBox.Show("Ласкаво просимо, " + dr["fullname"].ToString() + " | ", "Доступ дозволено", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    MainForm main = new MainForm();
-                    this.Hide();
-                    main.ShowDialog();
+                    string storedHash = dr["password"].ToString();
+                    string fullName = dr["fullname"].ToString();
+
+                    bool isPasswordValid = PasswordHelper.VerifyPassword(txtPass.Text, storedHash);
+
+                    if (isPasswordValid)
+                    {
+                        MessageBox.Show("Ласкаво просимо, " + fullName + "!", "Доступ дозволено", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        this.Hide();
+                        MainForm main = new MainForm();
+                        main.ShowDialog();
+                    }
+                    else
+                    {
+                        MessageBox.Show("Невірний пароль!", "Доступ заборонено", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    }
                 }
-                else 
-                { 
-                 MessageBox.Show("Невірне ім’я користувача або пароль!", "Доступ заборонено", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                else
+                {
+                    MessageBox.Show("Користувача не знайдено!", "Доступ заборонено", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 }
+
+                dr.Close();
                 con.Close();
             }
             catch (Exception ex)
             {
-
                 MessageBox.Show(ex.Message);
+                con.Close();
             }
+        }
+
+        private void txtPass_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

@@ -66,7 +66,13 @@ namespace kursova_2
         {
             int i = 0;
             dgvProduct.Rows.Clear();
-            cm = new SqlCommand("SELECT * FROM tbProduct WHERE CONCAT(pname, pprice, pdescription, pcategory) LIKE '%" + txtSearch.Text + "%'", con);
+            string query = @"SELECT * FROM tbProduct 
+                     WHERE CONCAT(pname, pprice, pdescription, pcategory) 
+                     LIKE N'%' + @search + '%'";
+
+            cm = new SqlCommand(query, con);
+            cm.Parameters.AddWithValue("@search", txtSearch.Text);
+
             con.Open();
             dr = cm.ExecuteReader();
             while (dr.Read())

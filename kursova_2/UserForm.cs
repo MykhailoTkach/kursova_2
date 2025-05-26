@@ -62,7 +62,9 @@ namespace kursova_2
                 if (MessageBox.Show("Ви впевнені, що хочете видалити цього користувача?", "Видалення запису", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                 {
                     con.Open();
-                    cm = new SqlCommand("DELETE FROM tbUser WHERE username LIKE'"+ dgvUser.Rows[e.RowIndex].Cells[1].Value.ToString() +"'", con);
+                    string username = dgvUser.Rows[e.RowIndex].Cells[1].Value.ToString();
+                    cm = new SqlCommand("DELETE FROM tbUser WHERE username = @username", con);
+                    cm.Parameters.AddWithValue("@username", username);
                     cm.ExecuteNonQuery();
                     con.Close();
                     MessageBox.Show("Користувача успішно видалено!");
