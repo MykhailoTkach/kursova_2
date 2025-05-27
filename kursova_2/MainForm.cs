@@ -38,7 +38,6 @@ namespace kursova_2
         {
             if (role == "Користувач")
             {
-                btnUser.Visible = false;
                 btnCategory.Visible = false;
             }
             else if (role == "Адміністратор")

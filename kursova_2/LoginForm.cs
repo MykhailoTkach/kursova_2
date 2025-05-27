@@ -80,9 +80,9 @@ namespace kursova_2
                     {
                         MessageBox.Show($"Ласкаво просимо, {fullName}! Ваша роль: {role}", "Доступ дозволено", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         this.Hide();
-                        MainForm main = new MainForm(fullName, txtName.Text, role);  // передаємо роль і ім'я
+                        MainForm main = new MainForm(fullName, txtName.Text, role);  
                         main.ShowDialog();
-                        this.Close(); // після закриття MainForm закриваємо LoginForm
+                        this.Close(); 
                     }
                     else
                     {

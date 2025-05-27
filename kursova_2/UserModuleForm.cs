@@ -83,7 +83,7 @@ namespace kursova_2
             txtRepass.Clear();
             txtPhone.Clear();
         }
-
+        public string oldPasswordHash = "";
         private void btnUpdate_Click(object sender, EventArgs e)
         {
             try
@@ -93,28 +93,41 @@ namespace kursova_2
                     MessageBox.Show("Паролі не співпадають!", "Попередження", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return;
                 }
+
                 if (MessageBox.Show("Ви дійсно хочете оновити дані користувача?", "Оновлення запису", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                 {
-                    string hashedPassword = PasswordHelper.HashPassword(txtPass.Text);
+                    string passwordToSave;
+
+                    if (string.IsNullOrWhiteSpace(txtPass.Text))
+                    {
+                        passwordToSave = oldPasswordHash;
+                    }
+                    else
+                    {
+                        passwordToSave = PasswordHelper.HashPassword(txtPass.Text);
+                    }
 
                     cm = new SqlCommand("UPDATE tbUser SET fullname=@fullname, password=@password, phone=@phone, role=@role WHERE username=@username", con);
                     cm.Parameters.AddWithValue("@fullname", txtFullName.Text);
-                    cm.Parameters.AddWithValue("@password", hashedPassword);
+                    cm.Parameters.AddWithValue("@password", passwordToSave);
                     cm.Parameters.AddWithValue("@phone", txtPhone.Text);
                     cm.Parameters.AddWithValue("@role", cbRole.SelectedItem.ToString());
                     cm.Parameters.AddWithValue("@username", txtUserName.Text);
+
                     con.Open();
                     cm.ExecuteNonQuery();
                     con.Close();
+
                     MessageBox.Show("Користувача успішно оновлено!");
                     this.Dispose();
                 }
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message);
+                MessageBox.Show("Помилка: " + ex.Message);
             }
         }
+
 
         private void UserModuleForm_Load(object sender, EventArgs e)
         {
